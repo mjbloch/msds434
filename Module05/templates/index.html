@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MSDS434- Module 5</title>
+</head>
+<body>
+    <h1>MSDS434- Module 5 - Matthew Bloch</h1>
+    <div class="container">
+        <form id="myForm">
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" min="1900" max="2099" required>
+
+            <label for="month">Month:</label>
+            <input type="number" id="month" name="month" min="1" max="12" required>
+            
+            <input type="submit" action="/test">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        console.log('hello world!')
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            console.log('entering event listener')
+            // Get the values from the form inputs
+            var year = document.getElementById("year").value;
+            var month = document.getElementById("month").value;
+
+            // Create an object with the data to send
+            var data = {
+                year: year,
+                month: month
+            };
+
+            // Send a POST request to the Flask route
+            fetch("/process", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }).then(() => location.replace('/results'))
+
+            // fetch('/test', {
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     }
+            // }).then((response) => response)
+            // .then((data) => location.replace('/test'))
+        });
+    </script>
+</body>
+</html>

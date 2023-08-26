@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BigQuery - ML Predictions Results</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>BigQuery - ML Predictions Results</h1>
+    <table>
+        <tr>
+            <th>Index</th>
+            <th>predicted_isBuyer</th>
+            <th>pageviews</th>
+            <th>timeOnSite</th>
+            <th>isNewVisit</th>
+            <th>isMobile</th>
+            <th>isDesktop</th>
+            <th>isPaidTraffic</th>
+            <th>Probability</th>
+        </tr>
+        {% for row in results %}
+        <tr>
+            <td>{{ row['index'] }}</td>
+            <td>{{ row['predicted_isBuyer'] }}</td>
+            <td>{{ row['pageviews'] }}</td>
+            <td>{{ row['timeOnSite'] }}</td>
+            <td>{{ row['isNewVisit'] }}</td>
+            <td>{{ row['isMobile'] }}</td>
+            <td>{{ row['isDesktop'] }}</td>
+            <td>{{ row['isPaidTraffic'] }}</td>
+            <td>{{ row['probability'] }}</td>
+        {% endfor %}
+    </table>
+</body>
+</html>
